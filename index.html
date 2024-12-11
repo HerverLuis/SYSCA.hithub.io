@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Control de Asistencia (SysCA)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Encabezado con Logo y Título -->
+<div class="header">
+    <img src="imagenes/logo.png" alt="Logo de SysCA" class="logo">
+    <div class="title">Sistema de Control de Asistencia (SysCA)</div>
+</div>
+
+<!-- Barra de Navegación con Botones -->
+<div class="navbar">
+    <button id="archivoButton" class="button" onclick="toggleSubmenu('archivoSubmenu', 'archivoButton')">Archivo</button>
+    <button id="registroButton" class="button" onclick="toggleSubmenu('registroSubmenu', 'registroButton')">Registro</button>
+    <button id="administracionButton" class="button" onclick="toggleSubmenu('administracionsubmenu', 'administracionButton')">Administracion</button>
+    <button id="reportesButton" class="button" onclick="toggleSubmenu('reportesSubmenu', 'reportesButton')">Reportes</button>
+    <button id="ayudaButton" class="button" onclick="toggleSection('ayudaSubmenu', 'ayudaButton')">Ayuda</button>
+</div>
+
+<!-- Submenú de Archivo -->
+<div id="archivoSubmenu" class="submenu">
+    <button class="submenu-button" onclick="showContent('usuarios')">Usuarios</button>
+    <button class="submenu-button" onclick="showContent('cambiarPassword')">Cambiar Password</button>
+    <button class="submenu-button" onclick="showContent('cerrarSesion')">Cerrar Sesión</button>
+    <button class="submenu-button" onclick="showContent('abrirSesion')">Abrir Sesión</button>
+    <button class="submenu-button" onclick="showContent('salir')">Salir</button>
+</div>
+
+<!-- Submenú de Registro -->
+<div id="registroSubmenu" class="submenu">
+    <button class="submenu-button" onclick="showContent('tiposTrabajador')">Tipos de Trabajador</button>
+    <button class="submenu-button" onclick="showContent('categoriasTrabajador')">Categorías de Trabajador</button>
+    <button class="submenu-button" onclick="showContent('asignarCategoria')">Asignar Categoría</button>
+    <button class="submenu-button" onclick="showContent('trabajadores')">Trabajadores</button>
+    <button class="submenu-button" onclick="showContent('registroHuella')">Registro de Huella</button>
+    <button class="submenu-button" onclick="showContent('recuperarPassword')">Recuperar Password</button>
+    <button class="submenu-button" onclick="showContent('unidadDirectiva')">Unidad Directiva</button>
+    <button class="submenu-button" onclick="showContent('asignarPuestodirectivo')">Asignar Puesto Directivo</button>
+    <button class="submenu-button" onclick="showContent('puestos')">Puestos</button>
+    <button class="submenu-button" onclick="showContent('asignarpuesto')">Asigar Puesto</button>
+    <button class="submenu-button" onclick="showContent('tiposIncidencias')">Tipos de Incidencias</button>
+    <button class="submenu-button" onclick="showContent('tiposJustificacion')">Tipos de Justificación</button>
+    <button class="submenu-button" onclick="showContent('frases')">Frases</button>
+    <button class="submenu-button" onclick="showContent('avisos')">Avisos</button>
+</div>
+
+<!-- Submenú de Administracion -->
+<div id="administracionsubmenu" class="submenu">
+    <button class="submenu-button" onclick="showContent('periodoescolar')">Periodo Escolar</button>
+    <button class="submenu-button" onclick="showContent('migrarhorarios')">Migrar Horarios</button>
+    <button class="submenu-button" onclick="showContent('registrodehorariotrabajador')">Registro de Horario Trabajador</button>
+    <button class="submenu-button" onclick="showContent('generarentradasporperiodo')">Generar Entradas por Periodo</button>
+    <button class="submenu-button" onclick="showContent('registrodeasistencia')">Registro de Asistencia</button>
+    <button class="submenu-button" onclick="showContent('justificaciondeincidencias')">Justificacion de Incidencias</button>
+    <button class="submenu-button" onclick="showContent('jornadasextras')">Jornadas Extras</button>
+    <button class="submenu-button" onclick="showContent('notasbuenas')">Notas buenas</button>
+    <button class="submenu-button" onclick="showContent('notasmalas')">Notas malas</button>
+</div>
+
+<!-- Submenú de Reportes -->
+<div id="reportesSubmenu" class="submenu">
+    <button class="submenu-button" onclick="showContent('horarioTrabajador')">Horario Trabajadores</button>
+    <button class="submenu-button" onclick="showContent('Trabajadores')">Trabajadores</button>
+    <button class="submenu-button" onclick="showContent('incidencias')">Incidencias</button>
+    <button class="submenu-button" onclick="showContent('jornadasExtras')">Jornadas Extras</button>
+    <button class="submenu-button" onclick="showContent('notasBuenas')">Notas Buenas</button>
+    <button class="submenu-button" onclick="showContent('notasMalas')">Notas Malas</button>
+    <button class="submenu-button" onclick="showContent('tiposdeJustificaciones')">Tipos de Justificaciones</button>
+    <button class="submenu-button" onclick="showContent('tiposdeIncidencias')">Tipos de Incidencias</button>
+    <button class="submenu-button" onclick="showContent('entradassalidasint')">Entradas y Salidas Intermedias</button>
+    <button class="submenu-button" onclick="showContent('categorías')">Categorias</button>
+    <button class="submenu-button" onclick="showContent('periodoEscolar')">Periodo Escolar</button>
+    <button class="submenu-button" onclick="toggleSubmenu('trabajadoresSubmenu', 'trabajadoresBtn')" id="trabajadoresBtn">Trabajadores</button>
+</div>
+
+
+<!-- Submenú de Ayuda -->
+<div id="ayudaSubmenu" class="submenu">
+    <img src="imagenes/ayuda/autor1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Si tienes alguna duda con lo del sistema SYSCA puedes buscar al creador que se encuentra en esta parte.</p>
+</div>
+
+
+<!-- Secciones de Contenido del boton Archivo-->
+<div id="usuarios" class="section">
+    <img src="imagenes/archivo/usuarios.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al darle click en el boton de usuarios nos manda a este apartado que.</p>
+    <img src="imagenes/archivo/usuarios1.jpg." alt="Mi foto" class="mi-imagen">
+    <p>Aqui podemos agregar un usuario nuevo con las caracteristicas que nos pide ya sea de Administrador o de usuario normal que no te permite hacer los que el administrador puede.</p>
+</div>
+
+<div id="cambiarPassword" class="section">
+    <img src="imagenes/archivo/cambio de paswword.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado como el nombre nos dise cambiarle la contraseña, se empieza buscando al trabajador teniendo en cuenta la contraseña nueva que queramos ponerle ya que a continuacion nos pide agregarla, despues confirmar y para finalizar le das clic en modificar.</p>
+</div>
+
+<div id="cerrarSesion" class="section">
+    <img src="imagenes/archivo/cerrar sesion.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Pues en esta parte es cuando estamos en un usuario y queremos entrar a otro, mas que nada cundo no le queremos dar clic en cerrar el sistema si no que se puede cerrar sesion y volver a registrarte, por otro lado seria que el sistema esta trabado puedes cerrar sesion y volver a entrar y ya va a funcionar correctamente.</p>
+</div>
+
+<div id="abrirSesion" class="section">
+    <img src="imagenes/archivo/abrir sesion.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al darle click en abrir sesion  nos manda a este apartado.</p>
+    <img src="imagenes/archivo/abrir sesion2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado debemos de agregar nuestro usuario y nuestra contraseña, al darle click en iniciar entramos al sistema tambien podemos cancelar si no nos sabemos nuestros usuario.</p> 
+</div>
+
+<div id="salir" class="section">
+    <img src="imagenes/archivo/salir.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Cuando se traba el sistema o algo asi por el estilo podemos salir y volver a iniciar sesion, nos arroja un cuadro de dialogo si es que estamos seguros de salir o si nos arrepentimos y no salimos.</p>
+</div>
+
+<!-- Secciones de Contenido del boton Registro-->
+<div id="tiposTrabajador" class="section">
+    <img src="imagenes/registro/tipos de trabajador.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al darle clic en el boton tipos de Trabajador podemos modificar, eliminar y agregar nuevos.</p>
+    <img src="imagenes/registro/tipos de trabajador2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Tenemos que seleccionar un tipo al que el trabajador pertenece .</p>
+    <img src="imagenes/registro/tipos de trabajador3.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado tenemos que introducir el tipo y sabiendo si lo queremos modificar, eliminar o agreagar.</p>
+</div>
+
+<div id="categoriasTrabajador" class="section">
+    <img src="imagenes/registro/categorias de trabajador.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En ete apartado nos muestra las diferentes categorias que tienen los trabajadores y por ello tambien se pueden modificar, eliminar y agregar otras.</p>
+    <img src="imagenes/registro/categorias de trabajador1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Por otro lado aqui se muestran todas las categorias que hay.</p>
+</div>
+
+<div id="asignarCategoria" class="section">
+    <img src="imagenes/registro/asignar categoria.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al seleccionar el boton asignar Categoria nos aparece este apartado donse se puede apreciar que podemos agregar otra nueva si es que lo deseamos.</p>
+    <img src="imagenes/registro/asignar categoria1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Podemos busacar por el nombre del trabajador .</p>
+    <img src="imagenes/registro/asignar categoria2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Tambien podemos buscar por categoria ya teniendo seleccionado el sombre del trabajador, tambien se le puede poner las horas.</p>
+</div>
+
+<div id="trabajadores" class="section">
+    <img src="imagenes/registro/trabajadores.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En el boton de trabajadores tenemos que agregar nuevos para que aparezacan en el sistema .</p>
+    <img src="imagenes/registro/trabajadores1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Tenemos que llenar cado uno de los campos, teniendo el horario y sus demas datos que te pide, por otro lado podemos modificar los datos de un trabajador, elimiar al trbajador. Al seleccinar un trabajador y luego le das clic en buscar te aparecera toda su informacion y se puede modificar mientras estes en el usuario de administrador.</p>
+</div>
+
+<div id="registroHuella" class="section">
+</div>
+
+<div id="recuperarPassword" class="section">
+    <img src="imagenes/registro/recuperar paswword.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Si poor alguna razon se perdio la contraseña del trabajador podemos entrar a este apartado.</p>
+    <img src="imagenes/registro/recuperar paswword1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Solo tenemos que seleccionar el nomnre del trabajador, le das click en buscar y te arrojara una imagen del trabajador, despues de ahi podemos agregar una contraseña y la verificamos nuevamente y le damos click en modificar y se actualiza la contraseña nueva del trabajador.</p>
+</div>
+
+<div id="unidadDirectiva" class="section">
+    <img src="imagenes/registro/unidad directiva.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al darle click en unidad directiva aqui podemos agregar un nuevo, editarlos, modificar y eliminar.</p>
+    <img src="imagenes/registro/unidad directiva1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al seleccionar a alguien le damos click en modificar y ya podemos hacer los cambios segun lo que deseamos realizar.</p>
+</div>
+
+<div id="asignarPuestodirectivo" class="section">
+    <img src="imagenes/registro/asignar puesto directivo.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al igual que lo demas da informacion sobre los puestos de los trabajadores  y si queremos modificar esto, tambien tiene la fecha inicial de cuando se agrego el puesto al personal y la fecha en que terminara el puesto.</p>
+</div>
+
+<div id="puestos" class="section">
+    <img src="imagenes/registro/puestos1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Se administran los puestos de los docentes, si algun docente ya no trabaja en el tecnologico se puede poner en su estado como inactivo estando en el usuario de administrador.</p>
+</div>
+
+<div id="asignarpuesto" class="section">
+    <img src="imagenes/registro/asignar puesto1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al agregar un docente debemos de asignar un puesto pero en oficina, si se tienen que modificar se te ara llegar una lista.</p>
+</div>
+
+<div id="tiposIncidencias" class="section">
+    <img src="imagenes/registro/tipos de incidencias.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al decir incidencias sabemos que se refiere a un problema con algo para ello.</p>
+    <img src="imagenes/registro/tipos de incidencias1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Tenemos que checar el sistema para ver las incidencias dependiendo la checa en que nos lo pidan, hay incidencias tanto para entrada como para salida.</p>
+    <p>Incindencia Entrada,  ET-Entrada Temprana,   E-Entrada,   RA-Retardo Tipo A,   RB-Retardo Tipo B,   EN-No Registro Salida</p>
+    <p>Incidencia Salida,   S-Salida,   ST-Salida Tardia,   SN-No Registro Salida</p>
+</div>
+
+<div id="tiposJustificacion" class="section">
+    <img src="imagenes/registro/tipos de justificaciones.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado podemos saber sobre los tipos de justificacion.</p>
+    <img src="imagenes/registro/tipos de justificaciones1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>si alguien tiene incidencias y aun no estan capturadas, se te entregara unos oficios (papel) donde se nos proporciona la informacion que ocuparemos para que se le quite la incidencia.</p>
+</div>
+
+<div id="frases" class="section">
+    <img src="imagenes/registro/frases.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Las frases pueden motivar a uno a seguir adelante, estas dichas frases aparecen en la pc donde se registran la entrada y la salida los docentes.</p>
+    <img src="imagenes/registro/frases1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Aqui podemos agregar nuevas frases, editar, modificar y hasta eliminar.</p>
+</div>
+
+<div id="avisos" class="section">
+    <img src="imagenes/registro/avisos1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Asi como las frases tambien hay avisos, la mayoria de los docentes nada mas se registra entrada y su salida no le pone atencion a la pantalla y pues es ahi dinde aparecen los avisos, por igual estos se pueden editar, agregar y eliminar.</p>
+</div>
+
+<!-- Secciones de Contenido del boton Administracion-->
+<div id="periodoescolar" class="section">
+    <img src="imagenes/administracion/periodo escolar.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se pueden realizar muchas cosas.</p>
+    <img src="imagenes/administracion/periodo escolar1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>se pueden observar los demas periodos escolares, siguiendo los pasos que se te solicitan podemos eliminar, crear uno nuevo ediarlos, etc.</p>
+    <img src="imagenes/administracion/periodo escolar2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Teniendo creado el periodo escolar a un lado se le puede dar click, podemos darnos cuenta que se pueden poner los dias de suspencion, la gefa de la area te asignara el calendario escolar y checas las fehcas de acuerdo a eso puedes agregar los dias dependiendo el tipo de suspencion y solo le das click en guardar.</p>
+</div>
+
+<div id="migrarhorarios" class="section">
+    <img src="imagenes/administracion/migrar horarios.jpg" alt="Mi foto" class="mi-imagen">
+    <p>El significado de migrar horarios se entiende por pasar los horarios de un periodo escolar a otro.</p>
+    <img src="imagenes/administracion/migrar horarios1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Debemos de tener en cuenta que al pasar los horarios al nuevo periodo escolar este no se guardan solo se quedan ahi porque los profesores cada siclco escolar cambain de horarios.</p>
+    <p>los dos periodos deben de estar activos para que se puedan pasar correctamente</p>
+</div>
+
+<div id="registrodehorariotrabajador" class="section">
+    <img src="imagenes/administracion/registro de horario trabajador.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al seleccionar este apartado.</p>
+    <img src="imagenes/administracion/registro de horario trabajador1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Cada docente debera de entregar su horario ya correcto para poder editarlo en etsta parte del nuevo ciclo escolar que hayamos creado, esto es para editar su horario anterior al nuevo y solo se da click en guardar, se debe realizar uno por uno de todos los docentes.</p>
+</div>
+
+<div id="generarentradasporperiodo" class="section">
+    <img src="imagenes/administracion/genenar entradas.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Aqui es el ultimo paso para que queden guardados  los horarios de los trabajadores.</p>
+    <img src="imagenes/administracion/generar entradas1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Teniendo todos los horarios completos tienes que leer detalladamente lo que esta en el cuadro de dialogo, despues seleccionas el periodo escolar y esto hace que se guarden los horarios correctamente.</p>
+    <p>Por si pasa algo o se equivocaron en alguno horario puedes modificar le horario y volver a generar las entradas por periodo para que se guarden los cambios de la nueva modificacion</p>
+</div>
+
+<div id="registrodeasistencia" class="section">
+    <img src="imagenes/administracion/registro de asistencia.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Si un docente no registra su entrada y salida se generan las incidencias, pues este apartado es para los registros tanto de entrada y salida.</p>
+    <img src="imagenes/administracion/registro de asistencia1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Siempre que vallamos a registrar una entrada o una salida, tenemos que seleccionar el cuadrito de arriba en la parte derecha abajo del boton actualizar (desactivar temporizador) porque si no lo seleccionamos el sisytema se actualiza a cada rato y no te dejara registrar entrada o salida.</p>
+    <p>para que se regitre la entrada o salida de un docente tenemos que seleccionar igual un cadro que esta al lado izquierdo del (RFC), tambien si queremos registrar solo la entrada, salida o ambas se debe seleccionar en el apartado (Trabajaores a Detalle) </p>
+</div>
+
+<div id="justificaciondeincidencias" class="section">
+    <img src="imagenes/administracion/justificacion de incidencias.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Esto va relacionado con los registros de asistencia, hay dos tipos Directivos y Personal en General.</p>
+    <img src="imagenes/administracion/justificacion de incidencias1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Directivos: El gefe del area te proporcionara un oficio de comision en el cual ahi viene el motivo al cual va relacionado al (Tipo de Justificacion), tambien traera las fechas que se aplique esta justificacion .</p>
+    <p>Se tiene que seleccionar el cuadro de la (Clave) para identificar a quien va a justificar, se le da click en el boton guardar, para checar si se guardo correctamente, debemos seleccionar el circulito en (Incidencias Justificadas) ahi debe de aparecer el cambio con los datos que proporcionaste</p>
+    <img src="imagenes/administracion/justificacion de incidencias2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>General: aqui son los mismos pasos que en directivos, solo que si no encuentras un nombre en directivos lo puedes encontrar en esta parte.</p>
+</div>
+
+<div id="jornadasextras" class="section">
+    <img src="imagenes/administracion/jornadas extras1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Si algun docente quiere que lo registres en las jornadas extras puedes hacerlo, se agrega las fechas, los datos del docente y se guardan cambios y si le das click en (Cargar Jornadas Extras) debe de aparecer lo que agregaste .</p>
+</div>
+
+<div id="notasbuenas" class="section">
+    <img src="imagenes/administracion/notas buenas1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Aqui no se agrega nada al menos que alguien te notifique de hacerlo, se debera agregar lo que se te pida del docente y abjo escribir la nota buena.</p>
+</div>
+
+<div id="notasmalas" class="section">
+    <img src="imagenes/administracion/notas malas1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al igual que en notas buenas qui no se agrega nada al menos que alguien te notifique de hacerlo, se debera agregar lo que se te pida del docente y abajo escribir la nota mala.</p>
+</div>
+
+<!-- Secciones de Contenido del boton Reportes-->
+<div id="horarioTrabajador" class="section">
+    <img src="imagenes/reportes/horario trabajadores1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Se debe de seleccionar el periodo escolar y darle clic en (ver reporte).</p>
+    <img src="imagenes/reportes/horario trabajadores2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Se mostrara cada uno de los horarios de los docentes, en la parte izquierda parte superior vienen unos apartados por si quieren imprimir, o descargar en cualquier formato.</p>
+</div>
+
+<div id="Trabajadores" class="section">
+    <img src="imagenes/reportes/trabajadorespcp1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Trabajadores por Categorias y Plazas), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadorespua1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Trabajadores por Unidad de Adscripcion), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadoresptp1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Trabajadores por Tipo de Trabajador), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadoreslppg1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Lista de Personal en General), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadoreslpud1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Lista de Personal Unidad Directiva), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadoreslpa1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Lista de Personal Administrativos), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadoreslpd1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Lista de Personal Docentes), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadorestc1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (trabajadores tompleto), por igual se pueden descarghar en el formato que se te pida.</p>
+    <img src="imagenes/reportes/trabajadoresaj2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado se muestran los (Trabajadores Asistencia y Justificacion), llenamos los datos que nos solicitan dependiendo al profesor que buscamos, como el periodo, tipos d ejustificacion, el año, el trabajador y abajo vienen dos botones al cual seleccionamos el que nos pidan</p>
+    <img src="imagenes/reportes/trabajadoresaj3.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Si llegamos a seleccionar "buscar reporte de justificacion por periodo", nos arrojara las justificaciones del docente de todo el periodo, al igual que a los demas podemos descargar en el morfamto que nos indiquen</p>
+    <img src="imagenes/reportes/trabajadoresaj7.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al ingresar a "Listas de Asistencia", nos arroja 4 opciones que serian (Buscar Asistencia del Trabajador), (Buscar Asistencis por Periodo), (Asistencias de Trabajadores pñor Fechas), (Faltas del Trabajador), dependiendo a lo que nos pidan puedes busacar</p>
+    <img src="imagenes/reportes/trabajadoresaj6.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Por ultimo en este apartado "Listas de Horario", y al darle click en (Horario de Trabajadores), nos mostrara todos sus horarios dependiendo el trabajador que busquemos.</p>
+</div>
+
+
+<div id="incidencias" class="section">
+    <img src="imagenes/reportes/incidencias1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Los docentes estan dispersos en diferentes depanrtamentos y esto lo hace mas facil encontrarlos.</p>
+    <p>Si queremos buscar las incidencias de los profesores de una area determinada, la gefa del RH debera proporcionarte unas listas de los docentes que conforman esas areas para facilitarte el trabajo.</p>
+    <img src="imagenes/reportes/incidencias2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Ya teniendo agregado los datos que se te pide deberas darle clck en "Ver reporte", y te apareceran solo los docentes que conforman esa area especifica que proporcionaste.</p>
+</div>
+
+<div id="jornadasExtras" class="section">
+    <img src="imagenes/reportes/jornadas extras1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Aqui aparecen los datos de las jornadas extras de cada uno de los trabajadores, todo esto se puede imprimir o descargar segun como te lo encarguen.</p>
+</div>
+
+<div id="notasBuenas" class="section">
+    <img src="imagenes/reportes/notas buenas1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Igual en notas buenas aparecen cuando algun docente tiene notas buenas.</p>
+</div>
+
+<div id="notasMalas" class="section">
+    <img src="imagenes/reportes/notas malas1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>En este apartado es lo contrario de las notas buenas.</p>
+</div>
+
+<div id="tiposdeJustificaciones" class="section">
+    <img src="imagenes/reportes/tipos de justificacion1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Antes ya habia comentado sobre los tipos de justificaciones pero en este apartado estan correctamente escritos.</p>
+</div>
+
+<div id="tiposdeIncidencias" class="section">
+    <img src="imagenes/reportes/tipos de incidencias1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Al descargar las incidencias de los docentes, debe de tener un mpotivo por ello estan los tipos por el cual esta la incidencia como se muestra en a imagen.</p>
+</div>
+
+<div id="entradassalidasint" class="section">
+    <img src="imagenes/reportes/esintermedias1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Tambien se lleva un control de las entradas y salidas de los docentes, seleccionamos la fechas en las que queremos sacar los datos y le damos click en ver reporte.</p>
+    <img src="imagenes/reportes/esintermedias2.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Nos arrojara un reporte en donde estan las entradas o salidas de los docentes.</p>
+</div>
+
+<div id="categorías" class="section">
+    <img src="imagenes/reportes/categorias1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Antes ya habia mencionado sobre las categorias y los gefes de areas y si querermos sacar esos datos los encontramos en esta parte, por igual se pueden descargar o imprimir.</p>
+</div>
+
+<div id="periodoEscolar" class="section">
+    <img src="imagenes/reportes/periodo escolar1.jpg" alt="Mi foto" class="mi-imagen">
+    <p>Aqui nos muestra toda la informacion de los periodos escolares que hemos creamos tanto informacion si estan activo o no.</p>
+</div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
